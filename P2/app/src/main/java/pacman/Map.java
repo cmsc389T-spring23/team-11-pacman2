@@ -55,17 +55,34 @@ public class Map {
   }
 
   public boolean move(String name, Location loc, Type type) {
-    Location oldLocation = locations.get(name);
-    JComponent component = components.get(name);
+    // Location oldLocation = locations.get(name);
+    // JComponent component = components.get(name);
 
-    field.get(oldLocation).remove(type);
+    // field.get(oldLocation).remove(type);
 
+    // locations.put(name, loc);
+    // component.setLocation(loc.y, loc.x);
+    // if (field.containsKey(loc))
+    //   field.put(loc, new HashSet<Type>());
+    // field.get(loc).add(type);
+    // return false;
+    if (!locations.containsKey(name) || !components.containsKey(name)) {
+      return false;
+    }
+
+    // if type doesn't exist in current loc of name
+    if (!field.get(locations.get(name)).contains(type)) {
+      return false;
+    }
+
+    field.get(locations.get(name)).remove(type); // removes type in original loc
+    field.get(loc).add(type); // add type in new loc
     locations.put(name, loc);
-    component.setLocation(loc.y, loc.x);
-    if (field.containsKey(loc))
-      field.put(loc, new HashSet<Type>());
-    field.get(loc).add(type);
-    return false;
+    components.get(name).setLocation(loc.x, loc.y);
+
+    return true;
+
+    
   }
 
   public HashSet<Type> getLoc(Location loc) {

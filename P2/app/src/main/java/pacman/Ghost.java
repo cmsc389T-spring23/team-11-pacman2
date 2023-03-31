@@ -41,6 +41,8 @@ public class Ghost {
 
     // this.myLoc = validMoves.get(choice);
     // return false;
+    
+    return false;
     ArrayList<Location> locs = get_valid_moves();
     if(!locs.isEmpty()){
       if (myMap.move(myName, locs.get(0), Map.Type.GHOST)){
