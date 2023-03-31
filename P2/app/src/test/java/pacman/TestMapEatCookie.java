@@ -1,4 +1,5 @@
 package pacman;
+
 import java.io.*;
 import junit.framework.*;
 
