@@ -82,7 +82,7 @@ public class Map {
     gameOver = true;
     return true;
   }
-
+  //check
   public JComponent eatCookie(String name) {
     Location cookieLoc = locations.get(name);
     String cookieId = "tok_x" + cookieLoc.x + "_y" + cookieLoc.y;
