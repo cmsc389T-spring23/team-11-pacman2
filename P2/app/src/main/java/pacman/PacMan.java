@@ -41,7 +41,7 @@ public class PacMan {
       return false;
 
     this.myLoc = validMoves.get(choice);
-    return false;
+    return true;
   }
 
   public boolean is_ghost_in_range() {
@@ -58,6 +58,10 @@ public class PacMan {
   }
 
   public JComponent consume() {
-    return new CookieComponent(0, 0, 20);
+    if(myMap.getLoc(myLoc).contains(Map.Type.COOKIE)) {
+      return(myMap.eatCookie(this.myName));
+    } else {
+      return(null);
+    }
   }
 }
