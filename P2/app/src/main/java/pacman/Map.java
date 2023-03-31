@@ -55,17 +55,6 @@ public class Map {
   }
 
   public boolean move(String name, Location loc, Type type) {
-    // Location oldLocation = locations.get(name);
-    // JComponent component = components.get(name);
-
-    // field.get(oldLocation).remove(type);
-
-    // locations.put(name, loc);
-    // component.setLocation(loc.y, loc.x);
-    // if (field.containsKey(loc))
-    //   field.put(loc, new HashSet<Type>());
-    // field.get(loc).add(type);
-    // return false;
     if (!locations.containsKey(name) || !components.containsKey(name)) {
       return false;
     }
@@ -81,9 +70,8 @@ public class Map {
     components.get(name).setLocation(loc.x, loc.y);
 
     return true;
-
-    
   }
+
 
   public HashSet<Type> getLoc(Location loc) {
     // boundary check
