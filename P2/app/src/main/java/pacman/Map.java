@@ -84,10 +84,6 @@ public class Map {
   }
   //check
   public JComponent eatCookie(String name) {
-    Location cookieLoc = locations.get(name);
-    String cookieId = "tok_x" + cookieLoc.x + "_y" + cookieLoc.y;
-    field.get(cookieLoc).remove(Map.Type.COOKIE);
-    cookies++;
-    return components.get(cookieId);
+    return false;
   }
 }
