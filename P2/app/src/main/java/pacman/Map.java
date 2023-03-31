@@ -84,6 +84,6 @@ public class Map {
   }
   //check
   public JComponent eatCookie(String name) {
-    return false;
+    return true;
   }
 }
