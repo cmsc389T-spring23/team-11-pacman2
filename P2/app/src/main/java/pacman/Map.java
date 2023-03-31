@@ -65,7 +65,7 @@ public class Map {
     if (field.containsKey(loc))
       field.put(loc, new HashSet<Type>());
     field.get(loc).add(type);
-    return false;
+    return true;
   }
 
   public HashSet<Type> getLoc(Location loc) {
@@ -82,7 +82,7 @@ public class Map {
     gameOver = true;
     return true;
   }
-
+  //check
   public JComponent eatCookie(String name) {
     Location cookieLoc = locations.get(name);
     String cookieId = "tok_x" + cookieLoc.x + "_y" + cookieLoc.y;
