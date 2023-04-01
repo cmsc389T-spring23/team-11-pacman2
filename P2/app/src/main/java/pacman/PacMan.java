@@ -37,20 +37,20 @@ public class PacMan {
     int choice = (int) (Math.random() * validMoves.size());
 
     if (validMoves.size() == 0 ||
-        myMap.move(myName, validMoves.get(choice), Map.Type.PACMAN))
+        !myMap.move(myName, validMoves.get(choice), Map.Type.PACMAN))
       return false;
 
     this.myLoc = validMoves.get(choice);
-    return false;
+    return true;
   }
 
   public boolean is_ghost_in_range() {
     for (int dx = -1; dx <= 1; dx++) {
       for (int dy = -1; dy <= 1; dy++) {
-        Location newLocation = myLoc.shift(dy, dx);
+        Location newLocation = myLoc.shift(dx, dy);
 
-        if (myMap.getLoc(newLocation).contains(Map.Type.PACMAN))
-          return false;
+        if (myMap.getLoc(newLocation).contains(Map.Type.GHOST))
+          return true;
       }
     }
 
@@ -58,6 +58,9 @@ public class PacMan {
   }
 
   public JComponent consume() {
-    return new CookieComponent(0, 0, 20);
+    if (myMap.getLoc(myLoc).contains(Map.Type.COOKIE))
+      return myMap.eatCookie(myName);
+
+    return null;
   }
 }
