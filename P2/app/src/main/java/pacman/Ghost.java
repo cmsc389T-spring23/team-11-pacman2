@@ -32,6 +32,15 @@ public class Ghost {
   }
 
   public boolean move() {
+    ArrayList<Location> validMoves = get_valid_moves();
+    int choice = (int) (Math.random() * validMoves.size());
+
+    if (validMoves.size() == 0 ||
+        !myMap.move(myName, validMoves.get(choice), Map.Type.GHOST))
+      return false;
+
+    this.myLoc = validMoves.get(choice);
+    return true;
     // ArrayList<Location> validMoves = get_valid_moves();
     // int choice = (int) (Math.random() * validMoves.size());
 
@@ -41,13 +50,13 @@ public class Ghost {
 
     // this.myLoc = validMoves.get(choice);
     // return false;
-    ArrayList<Location> locs = get_valid_moves();
-    if (!locs.isEmpty()) {
-      if (myMap.move(myName, locs.get(0), Map.Type.GHOST)) {
-        return true;
-      }
-    }
-    return false;
+    // ArrayList<Location> locs = get_valid_moves();
+    // if (!locs.isEmpty()) {
+    // if (myMap.move(myName, locs.get(0), Map.Type.GHOST)) {
+    // return true;
+    // }
+    // }
+    // return false;
   }
 
   public boolean is_pacman_in_range() {
