@@ -33,15 +33,19 @@ public class PacMan {
   }
 
   public boolean move() {
-    ArrayList<Location> validMoves = get_valid_moves();
-    int choice = (int) (Math.random() * validMoves.size());
+    ArrayList<Location> locs = this.get_valid_moves();
+    if (locs.size() <= 0) {
+      return (false);
+    }
+    boolean result = myMap.move("pacman", locs.get(0), Map.Type.PACMAN);
+    if (result) {
+      this.myLoc = locs.get(0);
+      return (true);
+    } else {
+      return (false);
+    }
 
-    if (validMoves.size() == 0 ||
-        myMap.move(myName, validMoves.get(choice), Map.Type.PACMAN))
-      return false;
-
-    this.myLoc = validMoves.get(choice);
-    return false;
+    
   }
 
   public boolean is_ghost_in_range() {
