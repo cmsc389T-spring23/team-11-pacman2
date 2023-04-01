@@ -54,7 +54,7 @@ public class PacMan {
         Location newLocation = myLoc.shift(dy, dx);
 
         if (myMap.getLoc(newLocation).contains(Map.Type.PACMAN))
-          return false;
+          return true;
       }
     }
 
@@ -62,6 +62,10 @@ public class PacMan {
   }
 
   public JComponent consume() {
-    return new CookieComponent(0, 0, 20);
+    if (myMap.getLoc(myLoc).contains(Map.Type.COOKIE))
+      return myMap.eatCookie(myName);
+
+    return null;
+    
   }
 }

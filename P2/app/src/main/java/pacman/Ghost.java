@@ -15,20 +15,24 @@ public class Ghost {
   }
 
   public ArrayList<Location> get_valid_moves() {
-    ArrayList<Location> validMoves = new ArrayList<Location>();
+    int x = myLoc.x;
+    int y = myLoc.y;
+    ArrayList<Location> validLocations = new ArrayList<Location>();
 
-    for (int dx = -1; dx <= 1; dx++) {
-      for (int dy = -1; dy <= 1; dy++) {
-        Location newLocation = myLoc.shift(dx, dy);
-
-        HashSet<Map.Type> types = myMap.getLoc(newLocation);
-        if (types.contains(Map.Type.WALL) ||
-            (types.size() == 1 && types.contains(Map.Type.PACMAN)))
-          validMoves.add(newLocation);
-      }
+    if (!myMap.getLoc(new Location(x - 1, y)).contains(Map.Type.WALL)) {
+      validLocations.add(new Location(x - 1, y));
+    }
+    if (!myMap.getLoc(new Location(x + 1, y)).contains(Map.Type.WALL)) {
+      validLocations.add(new Location(x + 1, y));
+    }
+    if (!myMap.getLoc(new Location(x, y - 1)).contains(Map.Type.WALL)) {
+      validLocations.add(new Location(x, y - 1));
+    }
+    if (!myMap.getLoc(new Location(x, y + 1)).contains(Map.Type.WALL)) {
+      validLocations.add(new Location(x, y + 1));
     }
 
-    return validMoves;
+    return validLocations;
   }
 
   public boolean move() {
